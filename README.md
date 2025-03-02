@@ -219,7 +219,7 @@ pictextify --input your_document.pdf --output result.txt
 pictextify --input your_document.pdf --ocr-engine tesseract --ocr-lang eng
 
 # 使用GOT-OCR引擎
-pictextify --input your_document.pdf --ocr-engine got-ocr
+pictextify --input tests/data/example.pdf 
 
 # 调试模式
 pictextify --input your_document.pdf --output result.txt --debug
