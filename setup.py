@@ -18,7 +18,7 @@ with open("requirements.txt", "r", encoding="utf-8") as f:
 
 setup(
     name="pictextify",
-    version="0.1.0",
+    version="0.0.1",
     author="TangZhifeng",
     author_email="tzfjobmail@gmail.com",
     description="从PDF和Word文档中提取文本和图片，并进行OCR处理",
@@ -31,7 +31,7 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.9",
     install_requires=requirements,
     entry_points={
         "console_scripts": [

@@ -73,7 +73,13 @@ __all__ = [
 
 
 def extract_from_file(
-    file_path, output_file=None, ocr_model=None, device="cuda", debug_mode=False
+    file_path,
+    output_file=None,
+    ocr_model=None,
+    device="cuda",
+    debug_mode=False,
+    ocr_engine="got-ocr",
+    lang=None,
 ):
     """
     从文件中提取文本和图片，并进行OCR处理
@@ -84,6 +90,8 @@ def extract_from_file(
         ocr_model (str, optional): GOT-OCR2_0模型路径，默认为/home/tangzhifeng/MODELZOOS/GOT-OCR2_0
         device (str, optional): 计算设备，可选 'cpu' 或 'cuda'，默认为'cuda'
         debug_mode (bool, optional): 是否启用调试模式，默认为False
+        ocr_engine (str, optional): OCR引擎，默认为'got-ocr'
+        lang (str, optional): OCR语言，默认为None
 
     Returns:
         str: 提取的文本内容
@@ -129,8 +137,12 @@ def extract_from_file(
         logger.debug(f"图片信息: {images_info}")
 
         # OCR处理图片
-        logger.debug(f"初始化OCR处理器, 模型: {ocr_model}, 设备: {device}")
-        ocr_processor = OCRProcessor(model_path=ocr_model, device=device)
+        logger.debug(
+            f"初始化OCR处理器, 模型: {ocr_model}, 设备: {device}, 引擎: {ocr_engine}, 语言: {lang}"
+        )
+        ocr_processor = OCRProcessor(
+            model_path=ocr_model, device=device, engine=ocr_engine, lang=lang
+        )
 
         # 处理图片并将OCR结果添加到有序内容中
         for idx, image_path in images_info:
@@ -171,7 +183,13 @@ def extract_from_file(
 
 
 def extract_and_align_pattern(
-    file_path, output_file=None, ocr_model=None, device="cuda", debug_mode=False
+    file_path,
+    output_file=None,
+    ocr_model=None,
+    device="cuda",
+    debug_mode=False,
+    ocr_engine="got-ocr",
+    lang=None,
 ):
     """
     从文件中提取文本和图片，进行OCR处理，并按特定模式对齐内容
@@ -182,6 +200,8 @@ def extract_and_align_pattern(
         ocr_model (str, optional): GOT-OCR2_0模型路径，默认为/home/tangzhifeng/MODELZOOS/GOT-OCR2_0
         device (str, optional): 计算设备，可选 'cpu' 或 'cuda'，默认为'cuda'
         debug_mode (bool, optional): 是否启用调试模式，默认为False
+        ocr_engine (str, optional): OCR引擎，默认为'got-ocr'
+        lang (str, optional): OCR语言，默认为None
 
     Returns:
         str: 按模式对齐的文本内容
@@ -227,8 +247,12 @@ def extract_and_align_pattern(
         logger.debug(f"图片信息: {images_info}")
 
         # OCR处理图片
-        logger.debug(f"初始化OCR处理器, 模型: {ocr_model}, 设备: {device}")
-        ocr_processor = OCRProcessor(model_path=ocr_model, device=device)
+        logger.debug(
+            f"初始化OCR处理器, 模型: {ocr_model}, 设备: {device}, 引擎: {ocr_engine}, 语言: {lang}"
+        )
+        ocr_processor = OCRProcessor(
+            model_path=ocr_model, device=device, engine=ocr_engine, lang=lang
+        )
 
         # 处理图片并将OCR结果添加到有序内容中
         for idx, image_path in images_info:

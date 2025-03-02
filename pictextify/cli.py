@@ -7,7 +7,8 @@ PicTextify CLI - 命令行接口
 
 import argparse
 import sys
-from . import extract_from_file, extract_and_align_pattern, __version__
+import logging
+from . import extract_from_file, extract_and_align_pattern, __version__, setup_logger
 from .ocr_processor import OCRProcessor
 
 
@@ -38,8 +39,22 @@ def main():
     parser.add_argument(
         "--version", "-v", action="version", version=f"PicTextify {__version__}"
     )
+    # 添加debug参数
+    parser.add_argument(
+        "--debug", action="store_true", help="启用调试模式，输出更详细的日志"
+    )
+    # 添加OCR引擎参数
+    parser.add_argument(
+        "--ocr-engine", default="got-ocr", help="OCR引擎，默认为got-ocr"
+    )
+    # 添加语言参数
+    parser.add_argument("--lang", default=None, help="OCR语言")
 
     args = parser.parse_args()
+
+    # 设置日志
+    setup_logger(args.debug)
+    logger = logging.getLogger("pictextify")
 
     # 列出推荐的OCR模型
     if args.list_models:
@@ -64,6 +79,8 @@ def main():
                 args.output,
                 ocr_model=args.ocr_model,
                 device=args.device,
+                ocr_engine=args.ocr_engine,
+                lang=args.lang,
             )
             print(f"处理完成! 已按模式对齐内容，输出文件: {args.output}")
         else:
@@ -73,6 +90,8 @@ def main():
                 args.output,
                 ocr_model=args.ocr_model,
                 device=args.device,
+                ocr_engine=args.ocr_engine,
+                lang=args.lang,
             )
             print(f"处理完成! 输出文件: {args.output}")
         return 0
