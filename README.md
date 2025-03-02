@@ -36,7 +36,7 @@ PicTextify is a document processing tool that extracts text and images from PDF 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/PicTextify.git
+git clone https://github.com/JavanTang/PicTextify.git
 cd PicTextify
 
 # Install
@@ -200,7 +200,7 @@ PicTextify是一个文档处理工具，能够从PDF和Word文档中提取文本
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/PicTextify.git
+git clone https://github.com/JavanTang/PicTextify.git
 cd PicTextify
 
 # 安装
